@@ -1,4 +1,5 @@
 import { useAccount, useBalance } from "wagmi";
+import { formatUnits } from "viem";
 import { useAaveData } from "../hooks/useAaveData";
 
 export function DeFiDashboard() {
@@ -15,7 +16,7 @@ export function DeFiDashboard() {
           <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl p-6 border border-white/10">
             <p className="text-gray-400 text-sm mb-1">Native ETH</p>
             <p className="text-3xl font-bold text-white">
-              {ethBalance?.formatted.slice(0, 6) || "0"} ETH
+              {ethBalance?.value ? Number(formatUnits(ethBalance.value, ethBalance.decimals)).toFixed(4) : "0.0000"} ETH
             </p>
           </div>
           <div className="bg-gradient-to-br from-green-500/20 to-teal-500/20 rounded-2xl p-6 border border-white/10">
